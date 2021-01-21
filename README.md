@@ -5,13 +5,16 @@ Self-Driving Car Engineer Nanodegree Program
 
 Objective: Create a computer vision solution to detect vehicles in a video.
 
-The project has the following major steps:
+The project includes the following techniques:
 
-* Perform a Histogram of Oriented Gradients (HOG) feature extraction on a labeled training set of images and train a classifier Linear SVM classifier
-* Apply a color transform and append binned color features, as well as histograms of color, to your HOG feature vector. 
-* Implement a sliding-window technique and use your trained classifier to search for vehicles in images.
-* Run a pipeline on a video stream (start with the test_video.mp4 and later implement on full project_video.mp4) and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
-* Estimate a bounding box for vehicles detected.
+* Histogram of Oriented Gradients (HOG) 
+* Feature extraction 
+* Linear SVM classifier
+* Color transformations and append binned color features, as well as histograms of color
+* Sliding-window technique and trained classifier to search for vehicles in images
+* Video stream pipeline 
+* Heat map of recurring detections frame by frame to reject outliers and follow detected vehicles
+* Estimate a bounding box for vehicles detected
 
 [//]: # (Image References)
 [image1]: ./output_images/vehicle_nonvehicle.png
@@ -25,7 +28,7 @@ The project has the following major steps:
 
 ---
 
-### Histogram of Oriented Gradients (HOG)
+#### Histogram of Oriented Gradients (HOG)
 
 The code for this step is contained in block 15 of the code .  
 
@@ -39,12 +42,13 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 
 ![alt text][image2]
 
-### 2. HOG parameters.
+
+#### HOG parameters.
 
 I tried various combinations of parameters and i decided to choose color_space `YCrCb` ,`HOG orientations 9`,  `HOG pixels per cell 8`, `HOG cells per block 2`, `ALL Hog channels`, `Spatial binning dimensions 32x32` and  `Number of histogram bins 32`. that you can see in the HOG parameters block
 
 
-#### 3. Classifier Trainning using previously selected HOG features.
+#### Classifier Trainning using previously selected HOG features.
 
 In the ## Train SVC block you'll see I trained a linear SVM using the parameters that ive previously mentioned 
 
@@ -74,18 +78,19 @@ Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spat
 [![Link to my video result_with Lanes](output_images/test_video_lane.gif)](https://youtu.be/kqQkgcQ4rwU)
 
 
+
 #### 2. False positives filter and overcoming overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
 
-### Here you can see heatmaps applied:
+#####  Here you can see heatmaps applied:
 
 ![alt text][image5]
 
 
-### Here the resulting bounding boxes are drawn onto the last frame in the series incuding Lane detection:
+#####  Here the resulting bounding boxes are drawn onto the last frame in the series incuding Lane detection:
 ![alt text][image6]
 
 
@@ -95,9 +100,10 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 #### Issues I faced:
 
-tThis code has a lot of room to improve we can work the bumpiness of the frames by getting loweing the number of samples on the video or get an average from every frame, also we can reduce the false positives by adjusting the region of interest and working with multiple heatmaps even add notes to identify the vehicle detected and many more
+This code has a lot of room to improve we can work the bumpiness of the frames by getting loweing the number of samples on the video or get an average from every frame, also we can reduce the false positives by adjusting the region of interest and working with multiple heatmaps even add notes to identify the vehicle detected and many more
 
 As you could see this projet is far from being completed because even when i feel i completed the task, there is a enormous oportunity to growth and improvement, i hope i can come back to this project to improve on my thoughts on new learnings!.  
 
 Thanks for reading.
+
 Adalberto
